@@ -5,5 +5,9 @@ author 'azutake'
 version '1.0.0'
 
 client_script 'client.lua'
-server_script 'server.lua'
-dependency 'qb-core'
+
+ui_page 'nui/index.html'
+
+files {
+  'nui/index.html'
+}

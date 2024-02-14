@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DisplayID</title>
+  <style>
+    #full {
+      display: flex;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+    #display {
+      color: #fff;
+      text-shadow: 1.5px 0 0 #000, 0 -1.5px 0 #000, 0 1.5px 0 #000, -1.5px 0 0 #000;
+      font-size: 1em;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="full">
+    <div id="display">
+    </div>
+  </div>
+  <script type="text/javascript">
+    var appendText = "";
+    setInterval(() => {
+      const today = new Date();
+      const d = new Intl.DateTimeFormat("ja-jp", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      }).format(today);
+      document.getElementById("display").textContent = `${d}${appendText ? " | " : ""}${appendText}`;
+    }, 1000)
+    window.addEventListener("message", e => {
+      if(e.data.type === "updateAppendText") {
+        appendText = e.data.text;
+      }
+    });
+  </script>
+</body>
+</html>
