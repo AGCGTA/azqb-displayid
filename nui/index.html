@@ -45,6 +45,7 @@
         appendText = e.data.text;
       }
     });
+    fetch(`https://${GetParentResourceName()}/init`, { method: "POST", body: JSON.stringify({})})
   </script>
 </body>
 </html>
